@@ -1,1 +1,40 @@
-// 1 hour
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  $.get("https://api.github.com/users/SalvatoreSantamaria", displayName)
+// Notice that displayName is a function that takes in 1 parameter (this is the data that comes back from the API)
+function displayName(data) {
+  console.log(data);
+
+$(document).ready(function(){
+  $("#btn1").click(function(){
+    $("#p1").text(data.name);
+  });
+  $("#btn2").click(function(){
+    $("#p2").text(data.name + " | ID: " + data.id + " | Created: " + data.created_at + " | Type: " + data.type + " | URL: " + data.url);
+  });
+});
+}
+  </script>
+</head>
+<body>
+  <h3>Hunting Github</h3>
+  <p>By click the below button, my name will appear below. Data is being pulled from Githubs API.</p>
+  <div>
+    <button id="btn1">Click Here</button>
+  </div>
+<p id="p1">  </p>
+  <hr>
+  <p>By click the below button, some of my user data appear below. Data is being pulled from Githubs API.</p>
+  <div>
+    <button id="btn2">Click Here</button>
+  </div>
+<p id="p2">  </p>
+</body>
+</html>
