@@ -1,0 +1,51 @@
+<html>
+<head>
+	<title>Javascript Demo</title>
+	<style>
+		body {
+			background-color:black;
+			font-family: monospace;
+			color:white;
+			font-size:50px;
+			text-align: left; /* originally was set to center, I like it like this better! */
+			margin-top:20%;
+      margin-left:20%; /* originally did not have margin left, had to add*/
+		}
+		#magic{
+			color: #777;
+			border-right: 1px solid #777;
+			padding-right: 7px;
+			display: inline;
+		}
+	</style>
+</head>
+<body>
+    
+	Coding is <div id="magic"></div>
+    
+  <script>
+		var words = ["a lot of fun", "about not giving up", "challenging and empowering", "creative expression", "what I learned at CodingDojo!"],
+			el = document.getElementById('magic'),
+			word_counter = 0,
+			character_counter = 0;
+		function updateText() {
+      let character = words[word_counter][character_counter++]; //looping through each character
+      if (character == ' '){ //if character is blank
+        character ="&nbsp;" //use non breaking whitespace
+      }
+
+			el.innerHTML = el.innerHTML+character //seting innerHTML to add a character 1 at a time.
+			if(character_counter == words[word_counter].length + 1) { //instead of using  + 1 here, can also simply add a space to the end of each sentence in the words array
+				word_counter++; 	//choose a different word
+				character_counter = 0;	//start over with the first character of the word
+				el.innerHTML = '';  //set the html to be blank
+				//if we're displaying the last word, go back to the first word
+				if(word_counter == words.length) {
+					word_counter = 0;
+        }
+			}
+		}
+		setInterval(updateText,300);
+	</script>
+</body>
+</html>
