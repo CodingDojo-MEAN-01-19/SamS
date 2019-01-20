@@ -1,1 +1,61 @@
 <!-- 2 hours -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+  // $.get("https://api.github.com/users/SalvatoreSantamaria", displayName)
+  $.get("https://opentdb.com/api.php?amount=10&category=14&difficulty=easy&type=multiple", displayGame)
+// Notice that displayName is a function that takes in 1 parameter (this is the data that comes back from the API)
+// function displayName(data) {
+//   console.log(data);
+
+// $(document).ready(function(){
+//   $('')
+//   $("#btn1").click(function(){
+//     $("#p1").text(data.results[0].correct_answer);
+//   });
+//   $("#btn2").click(function(){
+//     $("#p2").text(data.name + " | ID: " + data.id + " | Created: " + data.created_at + " | Type: " + data.type + " | URL: " + data.url);
+//   });
+// });
+// }
+
+function displayGame(data){
+  console.log(data);
+  for (let content in data.results) {
+    let questions = data.results[content].question;
+    // let options = [...data.results[content].incorrect_answers, data.results[content].correct_answer]; //spread operation, I don't know how this works
+    let options = [];
+    let correct_answer = data.results[content].correct_answer
+    console.log(correct_answer);
+    options.push(data.results[content].incorrect_answers); 
+    options[0].push(data.results[content].correct_answer); //pushes correct answer into the options array
+    console.log(options);
+    $('.questions').append(questions).append('<hr>')
+      for (let i = 0; i < options.length; i++){
+        for (let j = 0; j < options[i].length; j++) {
+          $('.questions').append(options[i][j]).append('<br>');
+        }
+        $('.questions').append('<hr>')
+        // $('.questions').append(options[i]).append('<hr>');
+      }
+  }
+}
+
+
+  </script>
+</head>
+<body>
+
+
+<h1>Trivia Game</h1>
+<div class = "questions">
+
+</div>
+</body>
+</html>
