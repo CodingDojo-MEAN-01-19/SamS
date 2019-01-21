@@ -1,0 +1,105 @@
+<!-- 2 hours -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+  <style>
+    img{
+      width: 200px;
+    }
+  </style>
+  <title>Document</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+
+$(document).ready(function(){//on load jquery
+  $("#targaryen").click(function(){ //when image is clicked
+    $.get("https://anapioficeandfire.com/api/houses/378", displayData) //get api data, and pass is display data function
+      function displayData(data){ //displayData takes in data from API
+        console.log(data); //log ALL api data 
+        console.log(data.name); //logs just name
+        console.log(data.words); //logs words
+        console.log(data.titles); //logs titles
+        $("#spanname").text(data.name); //set span
+        $("#spanwords").text(data.words);
+        // $("#spantitles").text(data.titles); //didnt use because comma errors
+        titlesStr = '<br>'; 
+        for (let i = 0; i < data.titles.length; i++) { //loop thru data.titles
+          titlesStr = titlesStr + data.titles[i] + "<br>" //rebuild data.titles w/o commas
+          console.log(data.titles[i])
+        }
+        document.getElementById('spantitles').innerHTML = titlesStr //set spantitles
+      }
+  });
+
+  $("#stark").click(function(){
+    $.get("https://anapioficeandfire.com/api/houses/362", displayData)
+      function displayData(data){
+        $("#spanname").text(data.name);
+        $("#spanwords").text(data.words);
+        // $("#spantitles").text(data.titles);
+        titlesStr = '<br>';
+        for (let i = 0; i < data.titles.length; i++) {
+          titlesStr = titlesStr + data.titles[i] + "<br>"
+          console.log(data.titles[i])
+        }
+        document.getElementById('spantitles').innerHTML = titlesStr
+      }
+  });
+
+    $("#lannister").click(function(){
+    $.get("https://anapioficeandfire.com/api/houses/229", displayData)
+      function displayData(data){
+        $("#spanname").text(data.name);
+        $("#spanwords").text(data.words);
+        // $("#spantitles").text(data.titles);
+        titlesStr = '<br>';
+        for (let i = 0; i < data.titles.length; i++) {
+          titlesStr = titlesStr + data.titles[i] + "<br>"
+          console.log(data.titles[i])
+        }
+        document.getElementById('spantitles').innerHTML = titlesStr
+      }
+  });
+
+  $("#baratheon").click(function(){
+    $.get("https://anapioficeandfire.com/api/houses/17", displayData)
+      function displayData(data){
+        $("#spanname").text(data.name);
+        $("#spanwords").text(data.words);
+        // $("#spantitles").text(data.titles);
+        titlesStr = '<br>';
+        for (let i = 0; i < data.titles.length; i++) {
+          titlesStr = titlesStr + data.titles[i] + "<br>"
+          console.log(data.titles[i])
+        }
+        document.getElementById('spantitles').innerHTML = titlesStr
+      }
+  });
+
+});
+  </script>
+</head>
+  <body>
+
+    <div class="container">
+    <h1>Game of Thrones Houses Assignment</h1>
+      <div>
+        <div>
+          <img src="assets/gameofthrones/stark.jpg" alt="stark coatOfArms" id="stark">
+          <img src="assets/gameofthrones/targaryen.jpg" alt="targaryen coatOfArms" id="targaryen">
+          <img src="assets/gameofthrones/lannister.jpg" alt="lannister coatOfArms" id="lannister">
+          <img src="assets/gameofthrones/baratheon.png" alt="baratheon coatOfArms" id="baratheon">
+        </div>
+      <h4>House</h4>
+      <p>Name: <span id="spanname"></span></p>
+      <p>Words: <span id="spanwords"></span></p>
+      <p>Titles: <span id="spantitles"></span></p>
+      </div>
+    </div>
+  </body>
+</html>
