@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Document</title>
+        <script src= 'http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js'></script>
+    </head>
+    <body>
+        <button id="clickButtonId">Click Here</button>
+        <button id="hoverButtonId">Hover Here</button>
+        <script>
+               function $Dojo(x) {
+                   //create object
+                   this.theid = document.getElementById(x); //get the element that is being passed when function is called, assign to theid
+                   //console.log(theid)
+                   this.click = function (cb) { //assign click to anon function, take in callback var
+                       this.theid.addEventListener("click", cb) // add event listener "click" to theid variable, passes in cb. 
+                   };
+
+                   this.hover = function (hoverIn,  hoverOut) {
+                       this.theid.addEventListener("mouseover", hoverIn);
+                       this.theid.addEventListener("mouseout", hoverOut);
+                   }
+                   return this;
+               }
+
+               $Dojo("clickButtonId").click(function() {console.log("Click Here was clicked")})//function() is callback.
+               $Dojo("hoverButtonId").hover(function() {console.log("Hover here was hovered on")})
+
+//when $Dojo().click is called, the anon function is passed into the this.click function as cb. the this.click function added an event listener to the variable theid, and then passes in cb (which is the anon function). all the anon function does is console.log("Click Here was clicked"). 
+
+                //this also works
+                // (function(){
+                //     var dojoObject={
+                //         click: function(onclick){
+                //             document.getElementById("clickButtonId").addEventListener('click', onclick);
+                //         },
+                //         hover: function(hoverIn, hoverOut){
+                //             document.getElementById("hoverButtonId").addEventListener('mouseover', hoverIn);
+                //             document.getElementById("hoverButtonId").addEventListener('mouseout', hoverOut);
+                //         }
+                //     }
+                //     var $Dojo = function $Dojo(buttonId){
+                //         return dojoObject;
+                //     };
+                //     window.$Dojo = $Dojo;
+                // })();
+                // $Dojo("clickButtonId").click(function(){ console.log("Button Clicked")});
+                // $Dojo("hoverButtonId").hover(function(){ console.log("Hovered on") });
+
+
+
+                // Here are some hints that should help you get started:
+                // + $Dojo should be a function that returns an object (an HTML element object)
+                // + The object returned by the $Dojo function should have 2 added methods “click” and “hover”
+                // + The click method that you attach to the object returned by the $Dojo function should take in 1 parameter which is a callback that gets run on that event.
+                // + The hover method that you attach to the object returned by the $Dojo function should take in 2 parameters (what happens when you hover in and what happens when you hover out)
+                // + Your code should be wrapped in an immediate function that returns the $Dojo function. Here are some relevant built-in JS methods that should help:
+                // document.getElementById //(makes a DOMobject accessible to JavaScript) takes in one parameter which is the id for a particular element
+                // DOMobject.addEventListener //takes in 2 parameters 1) the event 2) the callback function (Note that this method must be run on an html element)
+                // // //Also note that you will need to pay attention to the following built in events from the DOM
+                // DOMobject.click
+                // DOMobject.mouseover
+                // DOMobject.mouseout
+        </script>
+
+    </body>
+</html>
+
+
+
+
