@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <link rel="stylesheet" type="text/css" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+   <link rel="stylesheet" href="http://localhost:8000/styles/main.css" >
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h3>Bagheera</h3>
+
+    <% for (var x in bagheera) { %>
+      <h5>Favorite Food: <%= bagheera[x].favorite_food %></h5>
+      <h5>Hobbies: <%= bagheera[x].friends %></h5>
+      <p>About: <%= bagheera[x].about %></p>
+      <hr>
+  <% } %>
+
+  </div>
+</body>
+</html>
