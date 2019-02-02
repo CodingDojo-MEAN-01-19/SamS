@@ -1,0 +1,71 @@
+<!-- from platform -->
+<!-- <html>
+<head>
+    <title>Epic Button Game</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type ="text/javascript">
+        $(document).ready(function (){
+    
+            var socket = io(); //1
+    
+            socket.on('greeting', function (data) { //4
+                console.log(data.msg); //5
+                socket.emit('thankyou', { msg: 'Thank you for connecting me! -Client' }); //6
+            });
+         })
+    </script>
+</head>
+<body>
+    <h1>Fun with sockets</h1>  
+</body>
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Epic Button Game</title>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  
+  <script>
+  $(document).ready(function() {
+      var socket = io.connect();
+
+      //use socket to listen for event coming from server
+      socket.on('numberUpdated', function(number){
+        $('#number').text(number);//get span and pass in number
+      });//when it receives event 'numberUpdated, need to know what to do 
+
+        $('#epic').click(function() {
+            socket.emit('buttonClicked') //when button is clicked we are emitting an event
+      });
+
+        $('#reset').click(function() {
+            socket.emit('reset') //when button is clicked we are emitting an event
+      });
+
+  });
+  </script>
+</head>
+<body>
+    <div class='container'>
+        <h3>Epic Button Game</h3>  
+        <p>Button pressed: <span id="number">0</span></p>
+        <div>
+            <button class="btn btn-primary" id="epic">Add to count</button>
+        </div>
+        <br>
+        <div>
+            <button class="btn btn-primary" id="reset">Reset</button>
+        </div>
+    </div>  
+</body>
+</html>
