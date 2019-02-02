@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" type="text/css" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <link rel="stylesheet" type="text/css" 
+   href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+   <link rel="stylesheet" href="http://localhost:8000/styles/main.css" >
+  <title>Document</title>
+</head>
+<body>
+  <div class="container">
+    <h3>Index</h3>
+      <form action="/result" method='post'>
+
+      <label for="firstName">First Name:</label>
+      <input type="text" name="firstName">
+
+      <label for="lastName">First Name:</label>
+      <input type="text" name="lastName">
+
+			<label for="location">Location: </label>
+			<select name="location">
+			  <option value="Redmond">Redmond</option>
+			  <option value="Seattle, WA">Seattle, WA</option>
+			  <option value="Lake Holm, WA">Lake Holm, WA</option>
+      </select>
+      
+      <label for="textArea">Please add a description:</label>
+			<textarea name="textArea"></textarea>
+      <br>
+      <input type="submit" value='Submit'>
+    </form>
+
+    
+  
+
+
+
+  </div>
+</body>
+</html>
