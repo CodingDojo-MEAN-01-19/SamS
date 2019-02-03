@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Epic Button Game</title>
+    <script
+    src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+  
+  <script>
+  $(document).ready(function() {
+      var socket = io.connect();
+
+      //use socket to listen for event coming from server
+      socket.on('numberUpdated', function(number){
+        $('#number').text(number);//get span and pass in number
+      });//when it receives event 'numberUpdated, need to know what to do 
+
+      socket.on('textUpdated', function(data){
+        $('#text').text(JSON.stringify(data));//get span and pass in number
+      });//when it receives event 'textUpdated, need to know what to do 
+
+
+        $('#submit').click(function(e) {
+            e.preventDefault();
+            socket.emit('submit') //when button is clicked we are emitting an event
+            // console.log("submit!")
+   
+      			socket.emit("posting_form", {
+				  	name: $('#name').val(), //get data from fields
+            location: $('#location').val(),
+            textArea: $('#textArea').val()
+
+            });
+          });
+
+  });
+  </script>
+</head>
+<body>
+    <div class='container'>
+        <h3>Survey Form with Socket.io!</h3>  
+        <p>Random number: <span id="number">0</span></p>
+        <p>Text: <span id="text">to update</span></p>
+    </div> 
+    
+    <div class="container">
+      <h3>Index</h3>
+        <form action="" id="survey_form">
+  
+          <label for="">Your Name: </label>
+          <input type="text" name="name" id="name">
+          <br>
+  
+        <label for="location">Location: </label>
+        <select name="location" id="location">
+          <option value="Redmond">Redmond</option>
+          <option value="Seattle, WA">Seattle, WA</option>
+          <option value="Lake Holm, WA">Lake Holm, WA</option>
+        </select>
+        <br>
+        <label for="textArea">Please add a description:</label>
+        <br>
+        <textarea name="textArea" id="textArea"></textarea> 
+        <br>
+        <input type="submit" value='Submit' id="submit">
+      </form>
+    </div>
+</body>
+</html>
