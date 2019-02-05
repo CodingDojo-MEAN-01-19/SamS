@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Group Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+            $(document).ready(function () {
+                // var username = prompt("what is your name?"); //prompt for username
+                var socket = io.connect(); //est connection
+ 
+                 
+                    $('#forms').submit(function () { //when the form is submitted
+                        socket.emit("createmessage", { //emit createmessage and 
+                            message: $("#message").val(), //the current value of the message
+														name: $("#name").val() //the users name
+	
+                        });
+                      
+                    // socket.on('serverMessages', function (data) { //receive updated message
+                    //     $("#renderMessages").append("<p>" + data.name + ": " + data.message + "</p>"); //add the name and the message
+                    // });
+								});
+
+});
+            
+    </script>
+</head>
+<body>
+<div id="header" > 
+    <form id="forms">
+        <h3>Group Chat</h3>
+				<label for="name">Name:</label>
+				<input id='name' type='text' name='name'>
+				<br>
+				<label for="message">Message:</label>
+				<input id='message' type='text' name='message'>
+
+				<button id="sendbutton">Send</button>
+				<div id="renderMessages">
+					<% for (var x in key) { %>
+							<p><%= key[x].name %>:<%= key[x].message %></p>
+					<% } %>
+			</div>
+    </form>
+</div>
+</body>
+</html>

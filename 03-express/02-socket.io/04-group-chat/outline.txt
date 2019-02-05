@@ -1,0 +1,16 @@
+depndancies:
+session
+body pareser
+ejs
+express
+socketio
+
+
+
+
+
+
+
+
+Prompt appears
+user name goes into session
