@@ -1,0 +1,118 @@
+For This section, we want you to do the following operations in a MongoDB database. Work with a partner or a small group so everyone gets a chance to collaborate and work as a team. For some of these, you may have to refer to MongoDB's operator documentation. This is one of the most important assignments in this section, make sure you answer all questions and take notes for future assignments.
+
+USEFULL COMMANDS:
+clear 
+shift instert is paste
+Show all databases available on our current MongoDB server	Example:
+show dbs
+Show current database selected	Example:
+db
+Change to another database
+Note: If the database you're trying to switch to does not exist, 
+Mongo shell will create a new database and switch to it.	Pattern:
+use DB_NAME
+
+Example:
+use message_board_db
+Delete database
+Note: db.dropDatabase() will delete the current database in use.
+
+Example:
+use message_board_db
+db.dropDatabase()
+
+View all collections in a MongoDB	Example:
+show collections
+Create a new collection in the current database	Pattern:
+db.createCollection("COLLECTION_NAME")
+
+Example:
+db.createCollection("ninjas")
+Destroy a collection 	Pattern:
+db.COLLECTION_NAME.drop()
+
+Example:
+db.ninjas.drop()
+
+
+Create a database called 'my_first_db'.
+  use my_first_db
+
+Create students collection.
+  db.createCollection("students")
+
+Each document you insert into this collection should have the following format: ({name: STRING, home_state: STRING, lucky_number: NUMBER, birthday: {month: NUMBER, day: NUMBER, year: NUMBER}})
+Create 5 students with the appropriate info.
+  db.students.insert({name: "Kuma", home_state:"WA", lucky_number:1, birthday: {month:1, day:2, year:2000}})
+  db.students.insert({name: "Mona", home_state:"WA", lucky_number:4, birthday: {month:1, day:3, year:2001}})
+  db.students.insert({name: "Donut", home_state:"WA", lucky_number:6, birthday: {month:1, day:4, year:2002}})
+  db.students.insert({name: "Baloo", home_state:"CA", lucky_number:8, birthday: {month:1, day:5, year:2004}})
+  db.students.insert({name: "Garfield", home_state:"WA", lucky_number:9, birthday: {month:1, day:6, year:1970}})
+
+
+Get all students.
+  db.students.find()
+
+Retrieve all students who are from California (San Jose Dojo) or Washington (Seattle Dojo).
+db.students.find({$or: [{home_state:"WA"}, {home_state:"CA"}]})
+
+
+Get all students whose lucky number is:
+greater than 3
+db.students.find({lucky_number:{$gt:3}})
+
+
+less than or equal to 10
+  db.students.find({lucky_number:{$lte:10}})
+
+
+between 1 and 9 (inclusive)
+  b.students.find({lucky_number:{$lte:9}, {lucky_number:{$gte:1}})
+
+Add a field to each student collection called 'interests' that is an ARRAY.  It should contain the following entries: 'coding', 'brunch', 'MongoDB'. Do this in ONE operation.
+  db.students.update({},{$set: {"interests":['coding', 'brunch', 'MongoDB']}},{multi:true})
+
+
+
+Add some unique interests for each particular student into each of their interest arrays.
+  db.students.update({name: "Kuma"},{$push: {interests:{$each:['barking', 'treats']}}})
+  db.students.update({name: "Mona"},{$push: {interests:{$each:['walks', 'dog food']}}})
+  db.students.update({name: "Donut"},{$push: {interests:{$each:['catnip', 'mice']}}})
+  db.students.update({name: "Baloo"},{$push: {interests:{$each:['sleeping', 'honey']}}})
+  db.students.update({name: "Garfield"},{$push: {interests:{$each:['napping', 'lasanga']}}})
+
+
+Add the interest 'taxes' into someone's interest array.
+  db.students.update({name: "Kuma"},{$push: {interests: "taxes"}})
+
+Remove the 'taxes' interest you just added.
+  db.students.update({name: "Kuma"},{$pull: {interests: "taxes"}})
+
+
+Remove all students who are from California.
+  db.students.remove({home_state:"CA"})
+
+Remove a student by name. 
+  db.students.remove({name:"Garfield"})
+
+Remove a student whose lucky number is greater than 5 (JUST ONE)
+	db.students.remove({lucky_number: {$gt:5}}, {justOne:true})
+
+
+
+Add a field to each student collection called 'number_of_belts' and set it to 0.
+  db.students.update({},{$set: {"number_of_belts":0}},{multi:true})
+
+Increment this field by 1 for all students in Washington (Seattle Dojo).
+db.students.update({},{$set: {"number_of_belts":1}},{multi:true})
+db.students.update({home_state: "WA"},{$inc: {number_of_belts: 1}},{multi:true})
+
+
+Rename the 'number_of_belts' field to 'belts_earned'
+  db.students.update({}, {$rename: {"number_of_belts":"belts_earned"}})
+
+Remove the 'lucky_number' field.
+  	db.students.update({}, {$unset:{lucky_number:""}},{multi:true})
+
+Add a 'updated_on' field, and set the value as the current date.
+  	db.students.update({}, {$currentDate:{updated_on:true}},{multi:true})
