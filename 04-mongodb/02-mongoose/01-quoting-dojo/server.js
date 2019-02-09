@@ -53,7 +53,7 @@ app.post('/users', function(req, res) {
   })
 })
 
-// The root route -- we want to get all of the users from the database and then render the index view passing it all of the users
+// we want to get all of the users from the database and then render the index view passing it all of the users
 app.get('/quotes', function(req, res) {
   User.find({}, function(err, users) {
     if (err) { console.log(err); }
