@@ -21,7 +21,7 @@
     <label for="Name">Name</label>
     <input type="text" name='name'>
     <br>
-    <label for="Age">Message</label>
+    <label for="message">Message</label>
     <textarea name="message" rows="8" cols="40"></textarea>
     <br>
     <input type="submit" value="Submit">
@@ -34,27 +34,35 @@
 
 
 
-        <% for (const comment of user.comment){ %>
-          <p><%="Name: " + comment.name %></p>
-          <p><%="Comment: " + comment.text %></p>
+        <% for (const comment of user.message){ %>
+          <p><%="comment name: " + comment.name %></p>
+          <p><%="comment text: " + comment.text %></p>
+          <!-- <p><%="Comment message: " + comment.message %></p>
+          <p><%="Comment comment: " + comment.comment %></p> -->
 
           <% } %>
-          <form action='/comment/<%= user._id %>' method="post">
+          <form action='/comment/<%= user._id %>' method="post">              
+            <input type="hidden" name="id" value="<%= user._id %>">
 
-            <!-- Name: <input class="comment_input" type="text" name="name"> -->
-                <div>
-                  <label for="">Name</label>
-                       <select name="user" id="">
-                         <% for (const user of users) { %>
-                          <option value="<%= user._id %>"><%= user.name %></option>
-                         <% } %>
-                       </select>
-                </div>
+            <label for="name">Name</label>
+            <input type="text" name='name'>
+            <br> 
 
-						Comment: <textarea name="comment"></textarea>
-						<input class="post2" type="submit" value="Post comment">
+            <label for="comment">Comment</label>
+						<textarea name="text"></textarea>
+						<input type="submit" value="postComment">
           </form>
       <% } %>
-  </div>
+        </div>
+  
+  <div>
+    keeping for reference, but dont use
+    <label for="">Name</label>
+         <select name="user" id="">
+           <% for (const user of users) { %>
+            <option value="<%= user._id %>"><%= user.name %></option>
+           <% } %>
+         </select>
+  </div>>
 </body>
 </html>

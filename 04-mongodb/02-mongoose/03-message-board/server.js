@@ -28,13 +28,13 @@ const UserSchema = new mongoose.Schema({
 const CommentSchema = new mongoose.Schema({
 	name: String,
 	text: String,
-	message: [{type: Schema.Types.ObjectId, 
-		ref: 'message'}]
+	message: {type: Schema.Types.ObjectId, 
+		ref: 'message'}
 })
 
 // Set models by passing them respective Schemas
 mongoose.model('User', UserSchema); // We are setting this Schema in our Models as 'User'
-mongoose.model("Message", UserSchema);
+// mongoose.model("Message", UserSchema);
 mongoose.model("Comment", CommentSchema);// We are setting this Schema in our Models as 'Comment'
 
 //Store models in variables
@@ -77,7 +77,7 @@ app.get('/', function(req, res) {
 // post route for adding a users message
 app.post('/users', function (req, res) {
 	console.log("POST DATA", req.body);
-	// create a new User with the name and age corresponding to those from req.body
+	// create a new User with the name and message corresponding to those from req.body
 	var user = new User({
 		name: req.body.name,
 		message: req.body.message
@@ -95,33 +95,39 @@ app.post('/users', function (req, res) {
 
 
 app.post('/comment/:id', function (req, res){
-  console.log(req.body);
-	console.log(req.params.id)
-	
+  // console.log("req.body is " + req.body);
+	// console.log("req.params.id is " + req.params.id)
+	// console.log("req.body.user is " + req.body.user) 
+	console.log("req.body.name is " + req.body.name)//this is the user commenting!
+	// console.log("req.params.postComment is " + req.params.postComment)
+	// console.log("req.body.message is " + req.body.message)
+	console.log("req.body.text is " + req.body.text) //this is the users comment!
 
-	User.update({
-		name:'Andriana'
-	}, {
-		$push: {
-			pets: {
-				name: 'Skippy', 
-				type: 'cactus' 
-			}}}, function(err){
-      console.log("There was an error" + err)
-	 })
+	const messageId = req.params.id;
+	// console.log(messageId);
+
+	User.findOne({_id: messageId}, function(err, user){
+		var newComment = new Comment({name: req.body.name, text: req.body.text});
+		// console.log(newComment)
+		console.log(user._id)
+		newComment.message = user._id; //user._id is referencing the UserSchema model. Here we are setting the newComment.message (see Comment model)
+		console.log(newComment.message)
 
 
+		User.update({ _id: user._id }, { $push: { comments: newComment }}, function(err) {
+		});
+			newComment.save(function(err) {
+				if (err) {
+					console.log(err);
 
+				} else {
+					console.log("comment added");
+				}
+			
 
-// const comment = new Comment ({
-// 	name: req.params.id,
-// 	text: req.body.comment,
-// 	message: req.body
-// })
-//   .then(message => {
-//     console.log(message);
-//   })
-//   .catch(console.log);
+		});
+	})
+	res.redirect('/');
 })
 
 
