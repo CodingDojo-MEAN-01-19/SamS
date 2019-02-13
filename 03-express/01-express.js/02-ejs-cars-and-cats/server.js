@@ -10,6 +10,10 @@ var app = express();
 //this will send the static index.html page from the static folder
 app.use('/static', express.static('static'))
 
+// express-app > server.js
+// As long as Express knows where we keep static files, it will serve index.html by default when we make a request to the root route. Since index.html is found in a folder within our dist folder, we just need to direct Express to find it. Do not overwrite what should be served on the root route so that it will always default to serving index.html.
+app.use(express.static( __dirname + '/public/dist/public' ));
+
 
 // app.get('/', function(request, response) {
 //     // just for fun, take a look at the request and response objects
@@ -24,7 +28,7 @@ app.listen(8000, function() {
 })
 
 // this is the line that tells our server to use the "/static" folder for static contentcopy
-app.use(express.static(__dirname + "/static"));
+// app.use(express.static(__dirname + "/static"));
 // two underscores before dirname
 // try printing out __dirname using console.log to see what it is and why we use it
 // console.log(__dirname)
