@@ -76,8 +76,8 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req,res){
 
-	Message.find({}).populate('comments').exec(function(err, messages){
-
+	Message.find({}).populate('_comments').exec(function(err, messages){
+console.log(messages)
 		res.render('index', {messages: messages})
 	})
 	
@@ -106,7 +106,13 @@ app.post('/message', function (req, res) {
 
 app.post("/comment/:id", function(req, res) {
 	const messageId = req.params.id;
+
+	console.log(messageId);
+
 	Message.findOne({ _id: messageId }, function(err, message) {
+
+		console.log(message);
+
 		const newComment = new Comment({ name: req.body.name, text: req.body.comment });
 		newComment._message = message._id;
 		Message.update({ _id: message._id }, { $push: { _comments: newComment }}, function(err) {
