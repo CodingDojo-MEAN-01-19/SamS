@@ -19,22 +19,23 @@ var Task = mongoose.model('Task');
 mongoose.Promise = global.Promise;
 
 app.use(bodyParser.json());
-app.use(express.static(path.join(__dirname, './static')));
+//app.use(express.static(path.join(__dirname, './static')));
+app.use(express.static(__dirname + '/public/dist/public'));
 
 app.set('views', path.join(__dirname, './views'));
 app.set('view engine', 'ejs');
 
 // Get to retrieve all tasks
 app.get('/tasks', function(req, res) {
-  Task.find({}, function(err, task) {
+  Task.find({}, function(err, tasks) {
     if (err) {
       console.log('There is an error', err);
       // respond with JSON
-      res.json({ message: 'There is an error', error: err });
+      res.status(500).json({ message: 'There is an error', error: err }); //500 is an error code
     } else {
       // respond with JSON
       console.log('incoming task data');
-      res.json({ task: task });
+      res.json( tasks );
     }
   });
 });
