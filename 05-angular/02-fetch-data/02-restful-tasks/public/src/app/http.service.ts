@@ -16,6 +16,15 @@ export class HttpService {
     console.log('from getTasks()');
     return this._http.get<Task[]>('/tasks');
   }
+
+  getTask(id) {
+    console.log('the id is' + id);
+    return this._http.get<Task[]>('/tasks/' + id);
+    // console.log('the id is' + id);
+    // const tempObservable = this._http.get('/tasks' + id);
+    // tempObservable.subscribe(data => console.log('Got task', data));
+  }
+
   // old way
   // getTasks() {
   //   // our http response is an Observable, store it in a variable

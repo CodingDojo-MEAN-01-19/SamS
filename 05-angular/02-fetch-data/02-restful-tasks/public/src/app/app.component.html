@@ -1,12 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>Welcome to {{ title }}!</h1>
-  <img
-    width="300"
-    alt="Angular Logo"
-    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
-  />
-</div>
+
 <h2>Here are some links to help you start:</h2>
 <ul>
   <li>
@@ -31,7 +24,7 @@
     </h2>
   </li>
 </ul>
-<p>Platform notes: ******************************************************</p>
+<!-- <p>Platform notes: ******************************************************</p>
 <h3>Value of num is: {{ num }}</h3>
 <h3>Value of randNum is: {{ randNum }}</h3>
 <h3>{{ str }}</h3>
@@ -44,11 +37,68 @@
 <p>
   End platform notes: ******************************************************
 </p>
-<h1>Task Assignment</h1>
-<ul>
+
+<p>
+  Event Platform notes
+</p>
+<button (click)="onButtonClick()">Click me!</button>
+<button (click)="onButtonClickParam(5)">Click me!</button>
+<button (click)="onButtonClickParams(5, 'hello')">Click me!</button>
+<button (click)="onButtonClickEvent($event)">Click me!</button>
+<p>
+  End platform notes: ******************************************************
+</p>
+
+<h1>Task Assignment</h1> -->
+<!-- <ul>
+
+
   <p *ngFor="let task of tasks">
     Task: {{ task.title }} <br />
     Description: {{ task.description }}<br />
     Has this task been completed? {{ task.completed }} <br />
   </p>
-</ul>
+</ul> -->
+
+<p>
+  Restful Task Assignment:
+  ******************************************************
+</p>
+
+<button (click)="showTasks()">Show All Tasks</button>
+<div *ngIf="show">
+  <ul>
+    <li *ngFor="let task of tasks">
+      Task: {{ task.title }}
+      <button (click)="getTask(task)">Show Details</button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="showDetails">
+  <h3>Task Details</h3>
+  <ul>
+    <li>
+      Title:
+      <br />
+      {{ title }}
+    </li>
+    <li>
+      Description:
+      <br />
+      {{ desc }}
+    </li>
+    <li>
+      Completed:
+      <br />
+      {{ completed }}
+    </li>
+    <li *ngFor="let d of data">
+      Task:
+      {{ d }}
+      {{ d.title }}
+      {{ d.description }}
+      {{ d.completed }}
+    </li>
+  </ul>
+</div>

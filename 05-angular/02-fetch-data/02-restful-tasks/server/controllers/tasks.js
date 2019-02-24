@@ -70,7 +70,7 @@ module.exports = {
       }
     });
   },
-  showOne: function(req, res) {
+  findOne: function(req, res) {
     Task.findOne({ _id: req.params.id }, function(err, task) {
       if (err) {
         console.log('There is an error', err);
