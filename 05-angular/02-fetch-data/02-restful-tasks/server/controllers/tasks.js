@@ -46,13 +46,13 @@ module.exports = {
       function(error, data) {
         if (error) {
           console.log(error);
-          response.json({
+          res.json({
             message: 'There is an error',
             error: error,
           });
         } else {
           console.log('Data Updated!');
-          response.json({
+          res.json({
             message: 'Success',
             data: data,
           });

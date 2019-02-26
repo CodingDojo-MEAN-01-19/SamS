@@ -1,104 +1,45 @@
-<!--The content below is only a placeholder and can be replaced.-->
+<div>
+  <div>
+    <h3>Welcome to {{ appTitle }}</h3>
+    <div>
+      <button (click)="getTasksFromService()">Get All Tasks</button>
+      <p *ngFor="let task of tasks">
+        {{ task.title }} - {{ task.description }}
+        <button (click)="updateTask(task)">EDIT</button>
+        <button (click)="deleteTask(task._id)">DELETE</button>
+      </p>
+    </div>
 
-<h2>Here are some links to help you start:</h2>
-<ul>
-  <li>
-    <h2>
-      <a target="_blank" rel="noopener" href="https://angular.io/tutorial"
-        >Tour of Heroes</a
-      >
-    </h2>
-  </li>
-  <li>
-    <h2>
-      <a target="_blank" rel="noopener" href="https://angular.io/cli"
-        >CLI Documentation</a
-      >
-    </h2>
-  </li>
-  <li>
-    <h2>
-      <a target="_blank" rel="noopener" href="https://blog.angular.io/"
-        >Angular blog</a
-      >
-    </h2>
-  </li>
-</ul>
-<!-- <p>Platform notes: ******************************************************</p>
-<h3>Value of num is: {{ num }}</h3>
-<h3>Value of randNum is: {{ randNum }}</h3>
-<h3>{{ str }}</h3>
-<input type="text" [value]="firstName" />
-
-<p *ngIf="loggedIn">You are logged in!</p>
-<p *ngFor="let snack of snacks">{{ snack }}</p>
-<p *ngIf="snacks.length < 3">You need more snacks.</p>
-
-<p>
-  End platform notes: ******************************************************
-</p>
-
-<p>
-  Event Platform notes
-</p>
-<button (click)="onButtonClick()">Click me!</button>
-<button (click)="onButtonClickParam(5)">Click me!</button>
-<button (click)="onButtonClickParams(5, 'hello')">Click me!</button>
-<button (click)="onButtonClickEvent($event)">Click me!</button>
-<p>
-  End platform notes: ******************************************************
-</p>
-
-<h1>Task Assignment</h1> -->
-<!-- <ul>
-
-
-  <p *ngFor="let task of tasks">
-    Task: {{ task.title }} <br />
-    Description: {{ task.description }}<br />
-    Has this task been completed? {{ task.completed }} <br />
-  </p>
-</ul> -->
-
-<p>
-  Restful Task Assignment:
-  ******************************************************
-</p>
-
-<button (click)="showTasks()">Show All Tasks</button>
-<div *ngIf="show">
-  <ul>
-    <li *ngFor="let task of tasks">
-      Task: {{ task.title }}
-      <button (click)="getTask(task)">Show Details</button>
-    </li>
-  </ul>
+    <div *ngIf="newTask2">
+      <h2>Edit a task</h2>
+      <form (submit)="updateSubmit()">
+        <p>{{ newTask2 | json }}</p>
+        Title:
+        <input
+          type="text"
+          name="newTask.title"
+          [(ngModel)]="newTask2.title"
+        /><br />
+        Description:<input
+          type="text"
+          name="newTask.description"
+          [(ngModel)]="newTask2.description"
+        /><br />
+        <input type="submit" value="Update Task" />
+      </form>
+    </div>
+  </div>
 </div>
-
-<div *ngIf="showDetails">
-  <h3>Task Details</h3>
-  <ul>
-    <li>
-      Title:
-      <br />
-      {{ title }}
-    </li>
-    <li>
-      Description:
-      <br />
-      {{ desc }}
-    </li>
-    <li>
-      Completed:
-      <br />
-      {{ completed }}
-    </li>
-    <li *ngFor="let d of data">
-      Task:
-      {{ d }}
-      {{ d.title }}
-      {{ d.description }}
-      {{ d.completed }}
-    </li>
-  </ul>
-</div>
+<form (submit)="onSubmit()">
+  <!-- use the json pipe to see how newTask changes in real time -->
+  <p>{{ newTask | json }}</p>
+  Task Title:
+  <input type="text" name="newTask.title" [(ngModel)]="newTask.title" />
+  Task Description:
+  <input
+    type="text"
+    name="newTask.description"
+    [(ngModel)]="newTask.description"
+  />
+  <input type="submit" value="Create Task" />
+</form>

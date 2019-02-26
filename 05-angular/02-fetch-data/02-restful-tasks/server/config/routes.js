@@ -14,7 +14,7 @@ module.exports = function(app) {
   });
 
   // Put to update a task
-  app.put('/tasks/:id', function(req, response) {
+  app.put('/tasks/:id', function(req, res) {
     tasks.updateOne(req, res);
   });
 
