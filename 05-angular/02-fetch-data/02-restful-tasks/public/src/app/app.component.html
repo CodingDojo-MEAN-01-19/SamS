@@ -5,8 +5,12 @@
       <button (click)="getTasksFromService()">Get All Tasks</button>
       <p *ngFor="let task of tasks">
         {{ task.title }} - {{ task.description }}
-        <button (click)="updateTask(task)">EDIT</button>
-        <button (click)="deleteTask(task._id)">DELETE</button>
+        <button (click)="updateTask(task)">Edit</button>
+        <button (click)="deleteTask(task._id)">Delete</button>
+
+        <!-- added for nested components -->
+        <button (click)="taskToShow(task._id)">Show</button>
+        <!-- end add -->
       </p>
     </div>
 
@@ -43,3 +47,7 @@
   />
   <input type="submit" value="Create Task" />
 </form>
+
+<!-- working on nested components -->
+
+<app-task *ngIf="selectedTask" [taskToShow]="selectedTask"></app-task>

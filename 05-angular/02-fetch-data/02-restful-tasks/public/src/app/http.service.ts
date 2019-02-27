@@ -17,6 +17,11 @@ export class HttpService {
     return this._http.post('/tasks', newtask);
   }
 
+  showTask(id) {
+    console.log('from showTask');
+    return this._http.get('/tasks/' + id);
+  }
+
   getTasks() {
     console.log('from getTasks()');
     return this._http.get('/tasks');

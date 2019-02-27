@@ -7,7 +7,7 @@ import { HttpService } from './http.service';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  appTitle = 'Restful Tasks CRUD';
+  appTitle = 'Restful Tasks CRUD!';
   newTask: any;
   newTask2: any;
   tasks: {};
@@ -17,6 +17,7 @@ export class AppComponent implements OnInit {
   completed: boolean;
   show: boolean = false;
   showDetails: boolean = false;
+  selectedTask: {};
 
   /**/
   // num: number;
@@ -78,21 +79,15 @@ export class AppComponent implements OnInit {
     });
   }
 
-  // getTask(task) {
-  //   this.showDetails = true;
-  //   console.log('selecting ' + task.title, task.decription, task._id);
-
-  //   const observable = this._httpService.getTask(task._id);
-  //   observable.subscribe(data => {
-  //     console.log('Got task', data);
-
-  //     console.log('data[data]', data['data']);
-  //     this.data = data['data'];
-  //     this.title = data['data'].title;
-  //     this.desc = data['data'].description;
-  //     this.completed = data['data'].completed;
-  //   });
-  // }
+  taskToShow(id) {
+    // currentlty just having it show all data, like in getTasksFromService
+    const observable = this._httpService.showTask(id);
+    observable.subscribe(data => {
+      console.log('Got taskToShow data', data);
+      this.selectedTask = data;
+      this.getTasksFromService();
+    });
+  }
 
   onSubmit() {
     const observable = this._httpService.addTask(this.newTask);
