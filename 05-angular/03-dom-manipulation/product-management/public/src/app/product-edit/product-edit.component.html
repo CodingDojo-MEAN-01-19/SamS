@@ -1,0 +1,68 @@
+<!-- <h2>Edit Product</h2>
+<form (submit)="updateSubmit()">
+  <p>{{ editProduct | json }}</p>
+  Title:
+  <input
+    type="text"
+    name="newProduct.title"
+    [(ngModel)]="editProduct.title"
+  /><br />
+  Description:<input
+    type="text"
+    name="newProduct.description"
+    [(ngModel)]="editProduct.description"
+  /><br />
+  <input type="submit" value="Update Task" />
+</form> -->
+
+<div class="component">
+  <fieldset>
+    <legend>Edit Product</legend>
+    <form (submit)="onSubmit()" #form="ngForm">
+      <div>
+        <label for="title">Title</label>
+        <input
+          name="title"
+          type="text"
+          required
+          minlength="4"
+          [(ngModel)]="product.title"
+          #title="ngModel"
+        />
+      </div>
+      <div>
+        <label for="description">Description</label>
+        <input
+          name="description"
+          type="text"
+          required
+          minlength="4"
+          [(ngModel)]="product.description"
+          #title="ngModel"
+        />
+      </div>
+      <!-- <div>
+        <label for="price">Price</label>
+        <input
+          name="price"
+          type="number"
+          step=".01"
+          required
+          [(ngModel)]="product.price"
+          #price="ngModel"
+        />
+      </div> -->
+      <!-- <div>
+        <label for="imageUrl">Image URL</label>
+        <input
+          name="imageUrl"
+          type="text"
+          [(ngModel)]="product.imageUrl"
+          #imageUrl="ngModel"
+        />
+      </div> -->
+      <button [disabled]="form.invalid">Update</button>
+    </form>
+    <button class="btn-delete" (click)="onDelete()">Delete</button>
+  </fieldset>
+</div>

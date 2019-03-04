@@ -1,0 +1,36 @@
+<div>
+  <p>Product List</p>
+</div>
+<div>
+  <p *ngFor="let product of products">
+    {{ product.title }} - {{ product.description }}
+    <button [routerLink]="['/product-edit', product._id]">
+      Edit with Route
+    </button>
+
+    <button (click)="deleteTask(product._id)">Delete</button>
+  </p>
+</div>
+
+<!-- <div *ngIf="editProduct">
+  <h2>Edit Product</h2>
+  <form (submit)="updateSubmit()">
+    <p>{{ editProduct | json }}</p>
+    Title:
+    <input
+      type="text"
+      name="newProduct.title"
+      [(ngModel)]="editProduct.title"
+    /><br />
+    Description:<input
+      type="text"
+      name="newProduct.description"
+      [(ngModel)]="editProduct.description"
+    /><br />
+    <input type="submit" value="Update Task" />
+  </form>
+</div>
+<div>
+  Testing
+  <a [routerLink] = "['/products', 'details', 5]"> Go to /products/details/5 </a>
+</div> -->

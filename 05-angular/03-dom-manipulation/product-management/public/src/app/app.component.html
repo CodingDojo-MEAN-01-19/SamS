@@ -1,0 +1,60 @@
+<div style="text-align:center">
+  <button [routerLink]="['/']">Home</button>
+  <button [routerLink]="['/product-list']">Product Listings</button>
+  <button [routerLink]="['/product-creation']">Create a New Product</button>
+  <router-outlet></router-outlet>
+
+  <div>
+    Welcome to {{ appTitle }}. Here we can manage a set of products. You are
+    able to create products, remove old products, and edit products.
+  </div>
+
+  <!-- <div>
+    <form (submit)="onSubmit()"> -->
+  <!-- use the json pipe to see how newTask changes in real time -->
+  <!-- <p>{{ newProduct | json }}</p>
+      Product Title:
+      <input
+        type="text"
+        name="newProduct.title"
+        [(ngModel)]="newProduct.title"
+      />
+      Product Description:
+      <input
+        type="text"
+        name="newProduct.description"
+        [(ngModel)]="newProduct.description"
+      />
+      <input type="submit" value="Create Product" />
+    </form>
+  </div> -->
+</div>
+<!-- <div>
+  <p>Product List</p>
+</div>
+<div>
+  <p *ngFor="let product of products">
+    {{ product.title }} - {{ product.description }}
+    <button (click)="updateProduct(product)">Edit</button>
+    <button (click)="deleteTask(product._id)">Delete</button>
+  </p>
+</div>
+
+<div *ngIf="editProduct">
+  <h2>Edit Product</h2>
+  <form (submit)="updateSubmit()">
+    <p>{{ editProduct | json }}</p>
+    Title:
+    <input
+      type="text"
+      name="newProduct.title"
+      [(ngModel)]="editProduct.title"
+    /><br />
+    Description:<input
+      type="text"
+      name="newProduct.description"
+      [(ngModel)]="editProduct.description"
+    /><br />
+    <input type="submit" value="Update Task" />
+  </form>
+</div> -->
