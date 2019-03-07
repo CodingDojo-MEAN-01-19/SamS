@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.getProductsFromService();
-    this.newProduct = { title: '', description: '' };
+    this.newProduct = { title: '', url: '', price: 0 };
   }
 
   getProductsFromService() {
@@ -53,14 +53,17 @@ export class ProductListComponent implements OnInit {
   //   console.log(this.editProduct);
   //   this._httpService.updateCake(id, this.editProduct).subscribe(data => {
   //     console.log('update product data', data);
-  //     this.editProduct = { title: '', description: '' };
+  //     this.editProduct = { title: '', url: '' };
   //     this.editProduct = null;
   //     this.getProductsFromService();
   //   });
   // }
 
   deleteTask(id) {
-    this.productService.removeCake(id).subscribe();
+    this.productService.removeCake(id).subscribe(result => {
+      console.log('this is the deleteTask(id) route, id is', id);
+      this.ngOnInit();
+    });
   }
 
   // reloadList() {
@@ -72,7 +75,7 @@ export class ProductListComponent implements OnInit {
     this.editProduct = {
       id: product._id,
       title: product.title,
-      description: product.description,
+      url: product.url,
     };
   }
 }

@@ -12,7 +12,7 @@ export class ProductCreationComponent implements OnInit {
 
   ngOnInit() {
     // this.getProductsFromService();
-    this.newProduct = { title: '', description: '' };
+    this.newProduct = { title: '', url: '', price: '' };
   }
 
   onSubmit() {
@@ -20,7 +20,7 @@ export class ProductCreationComponent implements OnInit {
     const observable = this.productService.addCake(this.newProduct);
     observable.subscribe(data => {
       console.log('Got data from post', data);
-      this.newProduct = { title: '', description: '' };
+      this.newProduct = { title: '', url: '', price: '' };
       // this.getProductsFromService();
     });
     console.log('Submitted');

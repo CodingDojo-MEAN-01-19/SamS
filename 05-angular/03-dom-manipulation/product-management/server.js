@@ -16,6 +16,11 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 // ____________________________________________________________________|
 
+app.use(function(req, res, next) {
+  console.log(req.url, req.method);
+  next();
+});
+
 //Mongoose Setting_____________________________________________________
 mongoose.connect('mongodb://localhost/rateMyCakes');
 require('./server/models/cake');

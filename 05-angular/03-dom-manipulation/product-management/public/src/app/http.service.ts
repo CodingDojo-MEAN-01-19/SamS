@@ -37,7 +37,7 @@ export class HttpService {
 
   removeCake(id) {
     console.log('from removeCake()', id);
-    var url = '/cakes/' + id;
+    const url = '/cakes/' + id;
     console.log(url);
     return this._http.delete(url);
   }

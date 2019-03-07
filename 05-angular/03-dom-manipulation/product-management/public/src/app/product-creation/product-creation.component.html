@@ -4,11 +4,13 @@
     <p>{{ newProduct | json }}</p>
     Product Title:
     <input type="text" name="newProduct.title" [(ngModel)]="newProduct.title" />
-    Product Description:
+    Product Image:
+    <input type="text" name="newProduct.url" [(ngModel)]="newProduct.url" />
+    Product Price:
     <input
-      type="text"
-      name="newProduct.description"
-      [(ngModel)]="newProduct.description"
+      type="number"
+      name="newProduct.price"
+      [(ngModel)]="newProduct.price"
     />
     <input type="submit" value="Create Product" />
   </form>

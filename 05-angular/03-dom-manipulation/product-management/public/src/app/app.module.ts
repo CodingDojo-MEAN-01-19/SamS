@@ -12,6 +12,7 @@ import { ProductCreationComponent } from './product-creation/product-creation.co
 import { AppRoutingModule } from './app-routing.module';
 import { ProductListComponent } from './product-list/product-list.component';
 import { ProductEditComponent } from './product-edit/product-edit.component';
+import { ProductHomeComponent } from './product-home/product-home.component';
 
 // import { AlphaComponent } from './alpha/alpha.component';
 // import { BetaComponent } from './beta/beta.component';
@@ -23,6 +24,7 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
     ProductCreationComponent,
     ProductListComponent,
     ProductEditComponent,
+    ProductHomeComponent,
 
     // AlphaComponent,
     // BetaComponent,

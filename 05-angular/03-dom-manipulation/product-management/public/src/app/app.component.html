@@ -1,13 +1,8 @@
 <div style="text-align:center">
   <button [routerLink]="['/']">Home</button>
-  <button [routerLink]="['/product-list']">Product Listings</button>
+  <button [routerLink]="['product-list']">Product Listings</button>
   <button [routerLink]="['/product-creation']">Create a New Product</button>
   <router-outlet></router-outlet>
-
-  <div>
-    Welcome to {{ appTitle }}. Here we can manage a set of products. You are
-    able to create products, remove old products, and edit products.
-  </div>
 
   <!-- <div>
     <form (submit)="onSubmit()"> -->
@@ -19,11 +14,11 @@
         name="newProduct.title"
         [(ngModel)]="newProduct.title"
       />
-      Product Description:
+      Product url:
       <input
         type="text"
-        name="newProduct.description"
-        [(ngModel)]="newProduct.description"
+        name="newProduct.url"
+        [(ngModel)]="newProduct.url"
       />
       <input type="submit" value="Create Product" />
     </form>
@@ -34,7 +29,7 @@
 </div>
 <div>
   <p *ngFor="let product of products">
-    {{ product.title }} - {{ product.description }}
+    {{ product.title }} - {{ product.url }}
     <button (click)="updateProduct(product)">Edit</button>
     <button (click)="deleteTask(product._id)">Delete</button>
   </p>
@@ -50,10 +45,10 @@
       name="newProduct.title"
       [(ngModel)]="editProduct.title"
     /><br />
-    Description:<input
+    url:<input
       type="text"
-      name="newProduct.description"
-      [(ngModel)]="editProduct.description"
+      name="newProduct.url"
+      [(ngModel)]="editProduct.url"
     /><br />
     <input type="submit" value="Update Task" />
   </form>

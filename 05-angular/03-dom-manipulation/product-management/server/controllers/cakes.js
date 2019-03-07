@@ -19,7 +19,8 @@ module.exports = {
   createOne: function(req, res) {
     var cake = new Cake({
       title: req.body.title,
-      description: req.body.description,
+      url: req.body.url,
+      price: req.body.price,
       completed: req.body.completed,
     });
     cake.save(function(err, results) {
@@ -40,8 +41,9 @@ module.exports = {
       },
       {
         title: req.body.title,
-        description: req.body.description,
+        url: req.body.url,
         completed: req.body.completed,
+        price: req.body.price,
       },
       function(error, data) {
         if (error) {
@@ -61,12 +63,12 @@ module.exports = {
     );
   },
   deleteOne: function(req, res) {
-    Cake.remove({ _id: req.params.id }, function(err) {
+    Cake.remove({ _id: req.params.id }, function(err, deletedCake) {
       if (err) {
         console.log('There is an error', err);
       } else {
         console.log('Cake deleted');
-        res.redirect('/cakes');
+        res.json(deletedCake); //reponding with API
       }
     });
   },

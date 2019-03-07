@@ -1,11 +1,12 @@
 <div>
-  <p>Product List</p>
+  <p>Cake Products List</p>
 </div>
 <div>
   <p *ngFor="let product of products">
-    {{ product.title }} - {{ product.description }}
+    {{ product.title }} - {{ product.url }} - {{ product.price }}
+    <img src="{{ product.url }}" alt="" />
     <button [routerLink]="['/product-edit', product._id]">
-      Edit with Route
+      Edit Cake
     </button>
 
     <button (click)="deleteTask(product._id)">Delete</button>
@@ -22,10 +23,10 @@
       name="newProduct.title"
       [(ngModel)]="editProduct.title"
     /><br />
-    Description:<input
+    url:<input
       type="text"
-      name="newProduct.description"
-      [(ngModel)]="editProduct.description"
+      name="newProduct.url"
+      [(ngModel)]="editProduct.url"
     /><br />
     <input type="submit" value="Update Task" />
   </form>

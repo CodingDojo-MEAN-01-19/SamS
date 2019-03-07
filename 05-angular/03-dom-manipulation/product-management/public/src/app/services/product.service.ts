@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { of, Observable } from 'rxjs';
+
+import { Product } from '../models';
 // import { Task } from './task.interface'; // from instructor jason
 
 @Injectable({
@@ -36,10 +39,16 @@ export class ProductService {
     // return this._http.get<Task[]>('/tasks');
   }
 
-  removeCake(id) {
-    console.log('from remove cake()', id);
-    return this._http.delete('/cakes/' + id);
-    // return this._http.get('/cakes/' + id);
+  //   removeCake(id) {
+  //     console.log('from remove cake()', id);
+  //     return this._http.delete('/cakes/' + id);
+  //   }
+
+  removeCake(id): Observable<Product> {
+    console.log(id);
+    const url = '/cakes/' + id;
+    console.log(url);
+    return this._http.delete<Product>(url);
   }
 }
 

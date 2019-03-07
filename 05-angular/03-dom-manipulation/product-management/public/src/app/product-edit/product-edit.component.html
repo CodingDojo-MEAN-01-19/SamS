@@ -7,10 +7,10 @@
     name="newProduct.title"
     [(ngModel)]="editProduct.title"
   /><br />
-  Description:<input
+  url:<input
     type="text"
-    name="newProduct.description"
-    [(ngModel)]="editProduct.description"
+    name="newProduct.url"
+    [(ngModel)]="editProduct.url"
   /><br />
   <input type="submit" value="Update Task" />
 </form> -->
@@ -31,16 +31,28 @@
         />
       </div>
       <div>
-        <label for="description">Description</label>
+        <label for="url">URL</label>
         <input
-          name="description"
+          name="url"
           type="text"
           required
           minlength="4"
-          [(ngModel)]="product.description"
+          [(ngModel)]="product.url"
           #title="ngModel"
         />
       </div>
+      <div>
+        <label for="price">Price</label>
+        <input
+          name="price"
+          type="number"
+          required
+          minlength="1"
+          [(ngModel)]="product.price"
+          #title="ngModel"
+        />
+      </div>
+
       <!-- <div>
         <label for="price">Price</label>
         <input
@@ -63,6 +75,6 @@
       </div> -->
       <button [disabled]="form.invalid">Update</button>
     </form>
-    <button class="btn-delete" (click)="onDelete()">Delete</button>
+    <button class="btn-delete" (click)="onDelete(product)">Delete</button>
   </fieldset>
 </div>

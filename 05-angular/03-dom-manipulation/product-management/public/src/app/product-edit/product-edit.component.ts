@@ -45,24 +45,25 @@ export class ProductEditComponent implements OnInit {
     this.productService
       .updateCake(this.productId, this.product)
       .subscribe(result => {
-        // console.log('this is the subscribe', result);
+        console.log('this is the subscribe', result);
         // console.log('this is the route', this.router);
         this.router.navigate(['/product-list']);
       });
     console.log('submitted');
   }
 
-  onDelete(): void {
-    console.log('submit', this.productId);
-    console.log('product', this.product);
+  onDelete(product: Product): void {
+    // console.log('submit', this.productId);
+    // console.log('product', this.product);
     this.productService.removeCake(this.productId).subscribe(result => {
-      // this.router.navigate(['/product-list']);
+      console.log('this is the onDelete() route', this.router);
+      this.router.navigate(['/product-list']);
     });
     console.log('ran onDelete()');
-    this.reloadList();
+    // this.reloadList();
   }
 
-  reloadList() {
-    this.router.navigate(['/product-list']);
-  }
+  // reloadList() {
+  //   this.router.navigate(['product-list']);
+  // }
 }

@@ -20,6 +20,7 @@ module.exports = function(app) {
 
   // Delete to delete a task
   app.delete('/cakes/:id', function(req, res) {
+    console.log('this is from routes.js', req.params.id);
     cakes.deleteOne(req, res);
   });
 

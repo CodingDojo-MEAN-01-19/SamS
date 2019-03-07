@@ -3,8 +3,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var CakeSchema = new mongoose.Schema({
   title: { type: String, required: [true, 'title is required'] },
-  description: { type: String, default: '' },
+  url: { type: String, default: '' },
   completed: { type: Boolean, default: false },
+  price: { type: Number, default: 0 },
   created_at: { type: Date, default: Date.now },
   updated_at: { type: Date, default: Date.now },
 });
